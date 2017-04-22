@@ -1,5 +1,8 @@
-## Redux-form playground
+# Redux-form playground
 
+## Tech stack
+- redux-form with sync, async and submit validation
+- material-ui integration
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
