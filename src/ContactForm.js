@@ -1,47 +1,75 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import {
+  required,
+  min6Max30Length,
+  validateSubmit,
+  asyncValidate,
+} from './lib/form-validation';
+
+const renderField = ({
+  input,
+  id,
+  type,
+  label,
+  meta: { asyncValidating, touched, error },
+}) => {
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input {...input} name={id} id={id} type={type} placeholder={label} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  );
+};
+
 class ContactForm extends Component {
   render() {
-    const { handleSubmit, pristine, reset } = this.props;
+    const { handleSubmit, pristine, reset, submitting, error } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(validateSubmit)}>
+
+        {error && <span>{error}</span>}
+
+        <Field
+          name="firstName"
+          id="firstName"
+          component={renderField}
+          type="text"
+          label="First Name"
+          validate={[required]}
+        />
+
+        <Field
+          name="lastName"
+          id="lastName"
+          component={renderField}
+          type="text"
+          label="Last Name"
+          validate={[required]}
+        />
+
+        <Field
+          name="email"
+          id="email"
+          component={renderField}
+          type="email"
+          label="Email"
+          validate={[required]}
+        />
+
+        <Field
+          name="username"
+          id="username"
+          component={renderField}
+          type="username"
+          label="Username"
+          validate={[required, min6Max30Length]}
+        />
 
         <div>
-          <label htmlFor="firstName">First Name</label>
-          <Field
-            name="firstName"
-            id="lastName"
-            component="input"
-            type="text"
-            placeholder="First Name"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="lastName">Last Name</label>
-          <Field
-            name="lastName"
-            id="lastName"
-            component="input"
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field
-            name="email"
-            id="email"
-            component="input"
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="">Accommodation required?</label>
+          <label htmlFor="">Do you need help in finding accommodation?</label>
           <div>
             <label htmlFor="yes_accommodation">
               <Field
@@ -76,7 +104,17 @@ class ContactForm extends Component {
               <option value="Angular">Angular</option>
               <option value="Vue">Vue</option>
               <option value="Ember">Ember</option>
+              <option value="Ember">Meteor</option>
             </Field>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="reason">
+            What topics would you like to hear about during the conference?
+          </label>
+          <div>
+            <Field name="reason" component="textarea" />
           </div>
         </div>
 
@@ -86,15 +124,12 @@ class ContactForm extends Component {
         </div>
 
         <div>
-          <label htmlFor="notes">Notes</label>
-          <div>
-            <Field name="notes" component="textarea" />
-          </div>
-        </div>
-
-        <div>
-          <button type="submit" disabled={pristine}>Submit</button>
-          <button type="button" disabled={pristine} onClick={reset}>
+          <button type="submit" disabled={submitting}>Submit</button>
+          <button
+            type="button"
+            disabled={pristine || submitting}
+            onClick={reset}
+          >
             Clear values
           </button>
         </div>
@@ -106,6 +141,8 @@ class ContactForm extends Component {
 
 ContactForm = reduxForm({
   form: 'contact',
+  asyncValidate,
+  asyncBlurFields: ['username'],
 })(ContactForm);
 
 export default ContactForm;

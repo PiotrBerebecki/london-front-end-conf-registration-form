@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 
 class ContactPage extends Component {
   submit = values => {
-    console.log(values);
+    // console.log(values);
   };
 
   render() {
