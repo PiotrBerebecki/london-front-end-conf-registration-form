@@ -1,8 +1,21 @@
-div {
-  margin-bottom: 2.2rem;
+
+.form__error {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: rgb(244, 67, 54);
+  font-size: 0.75rem;
 }
 
-span {
-  display: block;
-  color: tomato;
+.radiobuttons__container {
+  margin-top: 2rem;
+}
+
+.checkbox__container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.buttons__container {
+  display: flex;
+  justify-content: space-between;
 }

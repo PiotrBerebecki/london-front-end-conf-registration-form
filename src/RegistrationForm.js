@@ -3,185 +3,174 @@ import { Field, reduxForm } from 'redux-form';
 
 import './RegistrationForm.css';
 
+// material-ui
+import { RadioButton } from 'material-ui/RadioButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import MenuItem from 'material-ui/MenuItem';
+
+import {
+  Checkbox,
+  RadioButtonGroup,
+  SelectField,
+  TextField,
+} from 'redux-form-material-ui';
+
 import {
   required,
-  minMaxLength,
+  minMaxLengthUsername,
+  minMaxLengthEmail,
+  validEmail,
   minMaxLengthPassword,
-  validateSubmit,
-  validateEmailAsync as asyncValidate,
+  validateOnBlurAsync as asyncValidate,
   arePasswordsMatching as validate,
+  validateSubmit,
 } from './lib/form-validation';
 
-const renderField = ({
+const renderFieldNoErrorWhenActive = ({
   input,
-  id,
-  type,
   label,
-  meta: { asyncValidating, touched, active, error },
+  meta: { touched, active, error },
+  ...custom
 }) => {
-  // console.log('asyncValidating', asyncValidating); // todo - show loader
-  // when validating username on blur
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input {...input} name={id} id={id} type={type} placeholder={label} />
-      {['username', 'password', 'passwordConfirmation'].includes(id) &&
-        touched &&
-        !active &&
-        error &&
-        <span>{error}</span>}
-      {!['username', 'password', 'passwordConfirmation'].includes(id) &&
-        touched &&
-        error &&
-        <span>{error}</span>}
-    </div>
+    <TextField
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && !active && error}
+      fullWidth={true}
+      {...input}
+      {...custom}
+    />
   );
 };
 
-// const renderFieldActive = ({
-//   input,
-//   id,
-//   type,
-//   label,
-//   meta: { asyncValidating, touched, active, error },
-// }) => {
-//   return (
-//     <div>
-//       <label htmlFor={id}>{label}</label>
-//       <input {...input} name={id} id={id} type={type} placeholder={label} />
-//       {['username', 'password', 'passwordConfirmation'].includes(id) && touched && !active && error && <span>{error}</span>}
-//       {!['username', 'password', 'passwordConfirmation'].includes(id) && touched && error && <span>{error}</span>}
-//     </div>
-//   );
-// };
+const styleButton = {
+  width: '48%',
+};
+
+// <form onSubmit={handleSubmit(validateSubmit)}>
 
 class RegistrationForm extends Component {
-  render() {
-    const { handleSubmit, pristine, reset, submitting, error } = this.props;
-    return (
-      <form onSubmit={handleSubmit(validateSubmit)}>
+  handleValidation = values => {
+    validateSubmit(values)
+      .then(value => {
+        console.log('success chain');
+      })
+      .catch(e => {
+        console.log('catch', e);
+      });
+  };
 
-        {error && <span>{error}</span>}
+  render() {
+    const { handleSubmit, reset, pristine, submitting, error } = this.props;
+    return (
+      <form onSubmit={handleSubmit(this.handleValidation)}>
+
+        {error && <div className="form__error">{error}</div>}
 
         <Field
           name="firstName"
-          id="firstName"
-          component={renderField}
-          type="text"
-          label="First Name"
-          validate={[required]}
+          component={TextField}
+          hintText="First Name"
+          floatingLabelText="First Name"
+          // validate={[required]}
+          fullWidth={true}
         />
 
         <Field
           name="lastName"
-          id="lastName"
-          component={renderField}
-          type="text"
-          label="Last Name"
-          validate={[required]}
+          component={TextField}
+          hintText="Last Name"
+          floatingLabelText="Last Name"
+          // validate={[required]}
+          fullWidth={true}
         />
 
         <Field
           name="email"
-          id="email"
-          component={renderField}
-          type="email"
-          label="Email"
-          validate={[required]}
+          component={TextField}
+          hintText="Email"
+          floatingLabelText="Email"
+          // validate={[required, validEmail, minMaxLengthEmail]}
+          fullWidth={true}
         />
 
         <Field
           name="username"
-          id="username"
-          component={renderField}
-          type="username"
-          label="Username"
-          validate={[required, minMaxLength]}
+          component={renderFieldNoErrorWhenActive}
+          hintText="Username"
+          floatingLabelText="Username"
+          // validate={[required, minMaxLengthUsername]}
         />
 
         <Field
           name="password"
-          id="password"
-          component={renderField}
+          component={renderFieldNoErrorWhenActive}
+          hintText="Password"
           type="password"
-          label="Create a password"
-          validate={[required, minMaxLengthPassword]}
+          floatingLabelText="Password"
+          // validate={[required, minMaxLengthPassword]}
+          fullWidth={true}
         />
 
         <Field
           name="passwordConfirmation"
-          id="passwordConfirmation"
-          component={renderField}
+          component={renderFieldNoErrorWhenActive}
+          hintText="Confirm your password"
           type="password"
-          label="Confirm your password"
-          validate={[required]}
+          floatingLabelText="Confirm your password"
+          // validate={[required]}
+          fullWidth={true}
         />
 
-        <div>
-          <label htmlFor="">Do you need help in finding accommodation?</label>
-          <div>
-            <label htmlFor="yes_accommodation">
-              <Field
-                name="accommodation"
-                id="yes_accommodation"
-                component="input"
-                type="radio"
-                value="yes"
-              />
-              {' '}Yes
-            </label>
+        <Field
+          name="first_timer"
+          component={RadioButtonGroup}
+          className="radiobuttons__container"
+        >
+          <RadioButton value="yes" label="Attending for the first time" />
+          <RadioButton
+            value="no"
+            label="I've attended previous conference(s)"
+          />
+        </Field>
 
-            <label htmlFor="no_accommodation">
-              <Field
-                name="accommodation"
-                id="no_accommodation"
-                component="input"
-                type="radio"
-                value="no"
-              />
-              {' '}No
-            </label>
-          </div>
-        </div>
+        <Field
+          name="favourite_framework"
+          component={SelectField}
+          hintText="Favourite front-end framework"
+          floatingLabelText="Favourite front-end framework"
+          fullWidth={true}
+        >
+          <MenuItem value="react" primaryText="React" />
+          <MenuItem value="angular" primaryText="Angular" />
+          <MenuItem value="vue" primaryText="Vue" />
+          <MenuItem value="ember" primaryText="Ember" />
+          <MenuItem value="meteor" primaryText="Meteor" />
+          <MenuItem value="other" primaryText="Other" />
+        </Field>
 
-        <div>
-          <label htmlFor="interest">Favourite front-end framework</label>
-          <div>
-            <Field name="interest" id="interest" component="select">
-              <option defaultValue disabled />
-              <option value="React">React</option>
-              <option value="Angular">Angular</option>
-              <option value="Vue">Vue</option>
-              <option value="Ember">Ember</option>
-              <option value="Ember">Meteor</option>
-              <option value="Ember">Other</option>
-            </Field>
-          </div>
-        </div>
+        <Field
+          name="newsletter"
+          component={Checkbox}
+          label="Subscribe to out newsletter"
+          className="checkbox__container"
+        />
 
-        <div>
-          <label htmlFor="reason">
-            What topics would you like to hear about during the conference?
-          </label>
-          <div>
-            <Field name="reason" component="textarea" />
-          </div>
-        </div>
-
-        <div>
-          <label htmlFor="newsletter">Subscribe to out newsletter</label>
-          <Field name="newsletter" component="input" type="checkbox" />
-        </div>
-
-        <div>
-          <button type="submit" disabled={submitting}>Submit</button>
-          <button
+        <div className="buttons__container">
+          <RaisedButton
+            type="submit"
+            disabled={submitting}
+            label="Submit"
+            style={styleButton}
+          />
+          <RaisedButton
             type="button"
             disabled={pristine || submitting}
-            onClick={reset}
-          >
-            Clear values
-          </button>
+            label="Reset"
+            style={styleButton}
+            onTouchTap={reset}
+          />
         </div>
 
       </form>
@@ -190,10 +179,10 @@ class RegistrationForm extends Component {
 }
 
 RegistrationForm = reduxForm({
-  form: 'contact',
-  validate,
-  asyncValidate, // validates if email has already been used
-  asyncBlurFields: ['username'],
+  form: 'registration',
+  validate, // sync validation
+  asyncValidate, // async validation
+  asyncBlurFields: ['email', 'username'], // pick the fields for async field validation
 })(RegistrationForm);
 
 export default RegistrationForm;

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-const contactApp = combineReducers({
+const registrationApp = combineReducers({
   form: formReducer,
 });
 
-export default contactApp;
+export default registrationApp;

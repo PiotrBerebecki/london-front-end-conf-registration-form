@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import RegistrationForm from './RegistrationForm';
 
 class RegistrationPage extends Component {
-  submit = values => {
-    // console.log(values);
+  handleResult = values => {
+    console.log('RegistrationPage', values);
   };
 
   render() {
     return (
       <div>
-        <RegistrationForm onSubmit={this.submit} />
+        <RegistrationForm onValidationFinished={this.handleResult} />
       </div>
     );
   }
 }
 
-export default RegistrationPage;
+const mapStateToProps = state => ({
+  form: state.form,
+});
+
+export default connect(mapStateToProps, null)(RegistrationPage);

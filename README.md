@@ -2,8 +2,11 @@
 
 ## Tech stack
 - redux-form with sync, async and submit validation
-- material-ui integration
+- redux-form-material-ui integration
 
+## How to check the functionality
+- review email on blur validation by entering `ww@ww.ww`
+- review username on blur validation by entering `user123`
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
