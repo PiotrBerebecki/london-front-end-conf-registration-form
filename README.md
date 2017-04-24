@@ -3,14 +3,14 @@
 http://front-end-conf.surge.sh/
 
 ## How to check the functionality
-- review email on-blur validation by entering `chuck@react.com`
-- review username on-blur validation by entering `chuck123`
-- review submit validation by entering `Chuck` as first name and `Norris` as last name
-- review sync validation by entering different passwords
+- review `email` on-blur validation by entering `chuck@react.com`
+- review `username` on-blur validation by entering `chuck123`
+- review submit validation by entering `Chuck` as `first name` and `Norris` as `last name`
+- review sync validation by entering `different passwords`
 
 ## Tech stack
-- redux-form with sync, async and submit validation
-- redux-form-material-ui integration
+- [redux-form](https://github.com/erikras/redux-form) with sync, async and submit validation
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) integration
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
