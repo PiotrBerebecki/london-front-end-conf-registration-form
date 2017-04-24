@@ -1,11 +1,10 @@
 import React from 'react';
 
-import RegistrationPage from './RegistrationPage';
 import './MainContent.css';
 
-const MainContent = () => (
+const MainContent = ({children}) => (
   <div className="main-content__container">
-    <RegistrationPage />
+    {children}
   </div>
 );
 

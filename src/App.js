@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './Header';
 import MainContent from './MainContent';
+import HomePage from './HomePage';
+import AboutPage from './AboutPage';
+import RegistrationPage from './RegistrationPage';
 
 // material-ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -33,9 +37,9 @@ const muiTheme = getMuiTheme({
     canvasColor: white,
     borderColor: grey300,
   },
-  // ripple: {
-  //   color: 'red',
-  // },
+  ripple: {
+    color: deepPurple500,
+  },
   // raisedButton: {
   //   color: deepPurple500,
   //   textColor: white,
@@ -45,12 +49,22 @@ const muiTheme = getMuiTheme({
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div className="App">
-          <Header />
-          <MainContent />
-        </div>
-      </MuiThemeProvider>
+      <Router>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <div className="App">
+            <Header />
+            <MainContent>
+              <Route exact path="/" component={HomePage} />
+            </MainContent>
+            <MainContent>
+              <Route path="/about" component={AboutPage} />
+            </MainContent>
+            <MainContent>
+              <Route path="/register" component={RegistrationPage} />
+            </MainContent>
+          </div>
+        </MuiThemeProvider>
+      </Router>
     );
   }
 }
