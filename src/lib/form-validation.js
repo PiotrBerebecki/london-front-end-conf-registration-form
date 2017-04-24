@@ -41,10 +41,10 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // Async validation on blur
 export const validateOnBlurAsync = values => {
   return sleep(200).then(() => {
-    if (['user123'].includes(values.username)) {
+    if (['chuck123'].includes(values.username)) {
       throw { username: 'That username is taken. Try another.' }; // eslint-disable-line no-throw-literal
     }
-    if (['ww@ww.ww'].includes(values.email)) {
+    if (['chuck@react.com'].includes(values.email)) {
       throw { email: 'Email already registered.' }; // eslint-disable-line no-throw-literal
     }
   });
@@ -52,16 +52,13 @@ export const validateOnBlurAsync = values => {
 
 // submit validation
 export const validateSubmit = values => {
-  return sleep(1000)
-    .then(() => {
-      if (values.username !== 'p') {
-        throw new SubmissionError({
-          username: 'User does not exist',
-          _error: 'Login failed!',
-        });
-      } else {
-        console.log('submit validation passed', values);
-      }
-    })
-    .catch(() => null);
+  return sleep(1000).then(() => {
+    if (values.firstName === 'Chuck' && values.lastName === 'Norris') {
+      throw new SubmissionError({
+        firstName: 'Chuck Norris can do pair programming with himself.',
+        lastName: 'Chuck Norris coded his full-stack web app in Microsoft Paint on an iPhone.',
+        _error: 'Chuck Norris has never got an `Uncaught Reference error`. Ever.',
+      });
+    }
+  });
 };

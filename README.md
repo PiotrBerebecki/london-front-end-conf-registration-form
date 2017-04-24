@@ -1,12 +1,16 @@
-# Redux-form playground
+# London Front-End Conference Registration Form
+
+http://front-end-conf.surge.sh/
+
+## How to check the functionality
+- review email on-blur validation by entering `chuck@react.com`
+- review username on-blur validation by entering `chuck123`
+- review submit validation by entering `Chuck` as first name and `Norris` as last name
+- review sync validation by entering different passwords
 
 ## Tech stack
 - redux-form with sync, async and submit validation
 - redux-form-material-ui integration
-
-## How to check the functionality
-- review email on blur validation by entering `ww@ww.ww`
-- review username on blur validation by entering `user123`
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

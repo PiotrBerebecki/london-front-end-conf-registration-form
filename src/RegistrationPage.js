@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 
 import RegistrationForm from './RegistrationForm';
+import './RegistrationPage.css';
 
 class RegistrationPage extends Component {
-  handleResult = values => {
-    console.log('RegistrationPage', values);
+  state = {
+    name: '',
+  };
+
+  handleSuccess = name => {
+    this.setState({
+      name,
+    });
   };
 
   render() {
     return (
       <div>
-        <RegistrationForm onValidationFinished={this.handleResult} />
+        {this.state.name
+          ? <Paper className="registration__container" zDepth={1}>
+              <p className="registration__msg">
+                {this.state.name}, thank you for registering 👏 <br />
+                See you at the conference 😀
+              </p>
+            </Paper>
+          : <RegistrationForm onSuccess={this.handleSuccess} />}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  form: state.form,
-});
-
-export default connect(mapStateToProps, null)(RegistrationPage);
+export default RegistrationPage;

@@ -1,0 +1,11 @@
+.registration__container {
+  margin-top: 3rem;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.registration__msg {
+  color: #424242;
+  font-size: 2rem;
+}

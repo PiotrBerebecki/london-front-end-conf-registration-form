@@ -48,23 +48,11 @@ const styleButton = {
   width: '48%',
 };
 
-// <form onSubmit={handleSubmit(validateSubmit)}>
-
 class RegistrationForm extends Component {
-  handleValidation = values => {
-    validateSubmit(values)
-      .then(value => {
-        console.log('success chain');
-      })
-      .catch(e => {
-        console.log('catch', e);
-      });
-  };
-
   render() {
     const { handleSubmit, reset, pristine, submitting, error } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleValidation)}>
+      <form onSubmit={handleSubmit(validateSubmit)}>
 
         {error && <div className="form__error">{error}</div>}
 
@@ -73,7 +61,7 @@ class RegistrationForm extends Component {
           component={TextField}
           hintText="First Name"
           floatingLabelText="First Name"
-          // validate={[required]}
+          validate={[required]}
           fullWidth={true}
         />
 
@@ -82,7 +70,7 @@ class RegistrationForm extends Component {
           component={TextField}
           hintText="Last Name"
           floatingLabelText="Last Name"
-          // validate={[required]}
+          validate={[required]}
           fullWidth={true}
         />
 
@@ -91,7 +79,7 @@ class RegistrationForm extends Component {
           component={TextField}
           hintText="Email"
           floatingLabelText="Email"
-          // validate={[required, validEmail, minMaxLengthEmail]}
+          validate={[required, validEmail, minMaxLengthEmail]}
           fullWidth={true}
         />
 
@@ -100,7 +88,7 @@ class RegistrationForm extends Component {
           component={renderFieldNoErrorWhenActive}
           hintText="Username"
           floatingLabelText="Username"
-          // validate={[required, minMaxLengthUsername]}
+          validate={[required, minMaxLengthUsername]}
         />
 
         <Field
@@ -109,7 +97,7 @@ class RegistrationForm extends Component {
           hintText="Password"
           type="password"
           floatingLabelText="Password"
-          // validate={[required, minMaxLengthPassword]}
+          validate={[required, minMaxLengthPassword]}
           fullWidth={true}
         />
 
@@ -119,7 +107,7 @@ class RegistrationForm extends Component {
           hintText="Confirm your password"
           type="password"
           floatingLabelText="Confirm your password"
-          // validate={[required]}
+          validate={[required]}
           fullWidth={true}
         />
 
@@ -153,7 +141,7 @@ class RegistrationForm extends Component {
         <Field
           name="newsletter"
           component={Checkbox}
-          label="Subscribe to out newsletter"
+          label="Subscribe to our newsletter"
           className="checkbox__container"
         />
 
@@ -183,6 +171,9 @@ RegistrationForm = reduxForm({
   validate, // sync validation
   asyncValidate, // async validation
   asyncBlurFields: ['email', 'username'], // pick the fields for async field validation
+  onSubmitSuccess: (result, dispatch, props) => {
+    props.onSuccess(props.values.firstName);
+  },
 })(RegistrationForm);
 
 export default RegistrationForm;

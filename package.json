@@ -6,7 +6,6 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
-    "axios": "^0.16.1",
     "material-ui": "^0.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -20,6 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "rename": "mv build/index.html build/200.html",
+    "surge": "surge ./build --domain front-end-conf.surge.sh",
+    "deploy": "run-s build rename surge"
   }
 }
