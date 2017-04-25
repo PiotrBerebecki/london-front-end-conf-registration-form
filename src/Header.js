@@ -9,13 +9,12 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionInfoOutline from 'material-ui/svg-icons/action/info-outline';
 import NotificationEventAvailable
   from 'material-ui/svg-icons/notification/event-available';
-import ContentLink from 'material-ui/svg-icons/content/link';
 
 import './Header.css';
 
 class Header extends Component {
   state = {
-    isDrawerOpen: true,
+    isDrawerOpen: false,
   };
 
   handleDrawerToggle = () => {
@@ -48,6 +47,7 @@ class Header extends Component {
         >
 
           <NavLink
+            exact
             to="/"
             className="nav__link"
             activeClassName="nav__link--active"
