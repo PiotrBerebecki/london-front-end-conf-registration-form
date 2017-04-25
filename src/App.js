@@ -6,6 +6,7 @@ import MainContent from './MainContent';
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import RegistrationPage from './RegistrationPage';
+import './app.css';
 
 // material-ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -40,6 +41,10 @@ const muiTheme = getMuiTheme({
   ripple: {
     color: deepPurple500,
   },
+  // appBar: {
+  // color: 'transparent',
+  // color: 'rgba(255,255,255,0.3)',
+  // },
   // raisedButton: {
   //   color: deepPurple500,
   //   textColor: white,
@@ -51,7 +56,7 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider muiTheme={muiTheme}>
-          <div className="App">
+          <div className="app">
             <Header />
             <MainContent>
               <Route exact path="/" component={HomePage} />

@@ -34,7 +34,7 @@ class Header extends Component {
     return (
       <div>
         <AppBar
-          title={`London Front-End Conf ${new Date().getFullYear() + 1} - Registration Form`}
+          title={`London Front-End Conf ${new Date().getFullYear() + 1}`}
           titleStyle={{ textAlign: 'center' }}
           onLeftIconButtonTouchTap={this.handleDrawerToggle}
         />

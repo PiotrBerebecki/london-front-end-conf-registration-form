@@ -17,12 +17,12 @@ class RegistrationPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="registration-page__container">
         {this.state.name
           ? <Paper className="registration__container" zDepth={1}>
               <p className="registration__msg">
-                {this.state.name}, thank you for registering 👏 <br />
-                See you at the conference 😀
+                {this.state.name}, thank you for registering.<br />
+                See you at the conference.
               </p>
             </Paper>
           : <RegistrationForm onSuccess={this.handleSuccess} />}
