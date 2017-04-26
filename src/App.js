@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './Header';
 import MainContent from './MainContent';
-import HomePage from './HomePage';
-import AboutPage from './AboutPage';
-import RegistrationPage from './RegistrationPage';
+import HomeView from './HomeView';
+import AboutView from './AboutView';
+import RegistrationView from './RegistrationView';
 import './app.css';
 
 // material-ui
@@ -59,13 +59,13 @@ class App extends Component {
           <div className="app">
             <Header />
             <MainContent>
-              <Route exact path="/" component={HomePage} />
+              <Route exact path="/" component={HomeView} />
             </MainContent>
             <MainContent>
-              <Route path="/about" component={AboutPage} />
+              <Route path="/about" component={AboutView} />
             </MainContent>
             <MainContent>
-              <Route path="/register" component={RegistrationPage} />
+              <Route path="/register" component={RegistrationView} />
             </MainContent>
           </div>
         </MuiThemeProvider>

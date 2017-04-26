@@ -1,0 +1,51 @@
+@media screen and (max-width: 48em) {
+  .video__container {
+    background-image: url(https://media.timeout.com/images/103042848/image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.video__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*display: flex;*/
+  /*align-items: center;*/
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+}
+
+.video {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+@media screen and (min-width: 48em) {
+  .video {
+    display: block;
+  }
+}
+
+.homeview__content-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.homeview__title {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: lighter;
+  font-size: 4rem;
+}
