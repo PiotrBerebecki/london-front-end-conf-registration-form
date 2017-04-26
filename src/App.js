@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './Header';
 import MainContent from './MainContent';
 import HomeView from './HomeView';
-import AboutView from './AboutView';
 import RegistrationView from './RegistrationView';
 import './app.css';
 
@@ -50,9 +49,6 @@ class App extends Component {
             <Header />
             <MainContent>
               <Route exact path="/" component={HomeView} />
-            </MainContent>
-            <MainContent>
-              <Route path="/about" component={AboutView} />
             </MainContent>
             <MainContent>
               <Route path="/register" component={RegistrationView} />

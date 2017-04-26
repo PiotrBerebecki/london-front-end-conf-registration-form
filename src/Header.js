@@ -6,7 +6,6 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import ActionInfoOutline from 'material-ui/svg-icons/action/info-outline';
 import NotificationEventAvailable
   from 'material-ui/svg-icons/notification/event-available';
 
@@ -58,19 +57,6 @@ class Header extends Component {
           >
             <MenuItem onTouchTap={this.handleClose} leftIcon={<ActionHome />}>
               Home
-            </MenuItem>
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            className="nav__link"
-            activeClassName="nav__link--active"
-          >
-            <MenuItem
-              onTouchTap={this.handleClose}
-              leftIcon={<ActionInfoOutline />}
-            >
-              About
             </MenuItem>
           </NavLink>
 
