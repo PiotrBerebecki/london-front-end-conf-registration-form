@@ -12,21 +12,19 @@ import './app.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
-  // deepPurple100,
   deepPurple500,
   deepPurple700,
   grey100,
   grey300,
   grey400,
   grey500,
-  // grey600,
   grey800,
   white,
 } from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: deepPurple500,
+    primary1Color: deepPurple700,
     pickerHeaderColor: deepPurple500,
     primary2Color: deepPurple700,
     primary3Color: grey400,
@@ -41,14 +39,6 @@ const muiTheme = getMuiTheme({
   ripple: {
     color: deepPurple500,
   },
-  // appBar: {
-  // color: 'transparent',
-  // color: 'rgba(255,255,255,0.3)',
-  // },
-  // raisedButton: {
-  //   color: deepPurple500,
-  //   textColor: white,
-  // },
 });
 
 class App extends Component {

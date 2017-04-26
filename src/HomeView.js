@@ -11,25 +11,17 @@ const HomeView = () => (
         muted
         autoPlay
         loop
-        poster="https://react.amsterdam/img/dummy_bg.jpg"
+        poster="./img/background.jpg"
       >
         <source
-          src="https://www.videvo.net/app/stream.php?id=4731"
-          type="video/webm"
+          src="https://www.videvo.net/app/stream.php?id=5445"
+          type="video/mp4"
         />
-        {/* <source
-          src="https://react.amsterdam/video/video.mp4"
-          type="video/mp4"
-        /> */}
-        {/* <source
-          src="https://www.videvo.net/app/stream.php?id=4731"
-          type="video/mp4"
-        /> */}
       </video>
     </div>
 
     <div className="homeview__content-container">
-      <h1 className="homeview__title">London Front-End Conf</h1>
+      <h1 className="homeview__title">Early bird registrations open</h1>
     </div>
 
   </div>

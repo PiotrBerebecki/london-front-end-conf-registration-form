@@ -52,7 +52,7 @@ class RegistrationForm extends Component {
   render() {
     const { handleSubmit, reset, pristine, submitting, error } = this.props;
     return (
-      <form onSubmit={handleSubmit(validateSubmit)}>
+      <form onSubmit={handleSubmit(validateSubmit)} className="form">
 
         {error && <div className="form__error">{error}</div>}
 

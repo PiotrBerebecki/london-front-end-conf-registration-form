@@ -1,8 +1,6 @@
 import React from 'react';
 
-import './MainContent.css';
-
-const MainContent = ({children}) => (
+const MainContent = ({ children }) => (
   <div className="main-content__container">
     {children}
   </div>

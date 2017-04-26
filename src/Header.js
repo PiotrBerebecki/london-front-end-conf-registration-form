@@ -12,6 +12,10 @@ import NotificationEventAvailable
 
 import './Header.css';
 
+const styleAppBar = {
+  textAlign: 'center',
+};
+
 class Header extends Component {
   state = {
     isDrawerOpen: false,
@@ -35,7 +39,7 @@ class Header extends Component {
       <div>
         <AppBar
           title={`London Front-End Conf ${new Date().getFullYear() + 1}`}
-          titleStyle={{ textAlign: 'center' }}
+          style={styleAppBar}
           onLeftIconButtonTouchTap={this.handleDrawerToggle}
         />
 
